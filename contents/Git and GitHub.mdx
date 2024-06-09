@@ -1,0 +1,91 @@
+---
+title: Git and GitHub
+description: Guide for Git and GitHub
+date: "2023-10-26"
+category: "How-To Hub"
+---
+# Git and GitHub
+
+Git is a version control system that tracks changes in your computer files over time. It allows you to save different versions of your work and switch between them. You can think of it like a detailed history of your project that lets you go back in time if needed.
+
+GitHub, on the other hand, is a platform that uses Git to help you collaborate with others. It stores your Git repositories in the cloud and provides a place for you and your team to together on coding projects. GitHub makes it easy to share your work, contribute to others' projects, and keep everything organized.
+
+In this blog post, I will show you the process of setting up Git on your device and uploading files to GitHub using the command line. I will be using a Windows Machine running [WSL2](https://learn.microsoft.com/en-us/windows/wsl/about), and for demonstration purposes, I will upload my university assignment.
+
+First, we need to install Git on our local machine by using the command `sudo apt install git-all` -y. Once installed, you can start configuring your credentials to match exactly with your GitHub account by using the command `git config --global user.name "YOUR NAME"; git config --global user.email "YOUR EMAIL"`. Then, you can verify if you correctly entered your credentials by using the following command as shown in the picture.
+
+<figure className="flex flex-col w-full items-center gap-0">
+<img src="/images/Git and GitHub/image-1.png" className="w-full" alt="Configuring GitHub credentials"/>
+  <i>Configuring GitHub credentials</i>
+</figure>
+
+Then, create a repository in your account where we can upload the files, in my case, it is for my assignment.
+
+<figure className="flex flex-col w-full items-center gap-0">
+<img src="/images/Git and GitHub/image-2.png" className="w-full" alt="Creating GitHub repository"/>
+  <i>Creating GitHub repository</i>
+</figure>
+
+Once you have created the repository, you will be redirected to a page where you will find the detailed instructions on initializing the local repository and establishing its synchronization with the remote repository on GitHub.
+
+<figure className="flex flex-col w-full items-center gap-0">
+<img src="/images/Git and GitHub/image-3.png" className="w-full" alt="Detailed instructions on initializing the local repository"/>
+  <i>Detailed instructions on initializing the local repository</i>
+</figure>
+
+Now, navigate to the directory where the files you want to upload are located and begin executing the commands as shown in the instructions. You’ll be modifying the third command from `git add README.md` to `git add .` in order to add all the files and directories in the folder. I’ve explained below what each line of command does.
+
+1. `echo "# prog_labsheets" >> README.md` _//creates README file_
+2. `git init` _//initializes your repository_
+3. `git add .` _//stages all files for the next commit_
+4. `git commit -m "first commit"` _//commits the staged changes with a message_
+5. `git branch -M main` _// rename the default branch to main_
+6. `git remote add origin https://github.com/poshan-p/prog_labsheets.git` _//links local repository to remote repository on GitHub_
+7. `git push -u origin main` _// pushes the local commits to the remote repository_
+
+```bash
+echo "# prog_labsheets" >> README.md 
+git init 
+git add . 
+git commit -m "first commit" 
+git branch -M main 
+git remote add origin https://github.com/poshan-p/prog_labsheets.git 
+git push -u origin main
+```
+
+Please note that when you execute this command, GitHub will prompt you for your username and password. However, as account passwords are not supported, you’ll need to generate a token from this page: [Fine-grained Personal Access Tokens (github.com)](https://github.com/settings/tokens?type=beta) and use this token as your password. When creating the token, change the access level to Read and write in the Permissions -> Repository permissions for all the permissions and choose All repository for repository access.
+
+<figure className="flex flex-col w-full items-center gap-0">
+<img src="/images/Git and GitHub/image-4.png" className="w-full" alt="Pushing changes to main branch"/>
+  <i>Pushing changes to main branch</i>
+</figure>
+
+You can now refresh the repository page, and you will see that all the files have been successfully pushed.
+
+<figure className="flex flex-col w-full items-center gap-0">
+<img src="/images/Git and GitHub/image-5.png" className="w-full" alt="Updated remote repository page"/>
+  <i>Updated remote repository page</i>
+</figure>
+
+I made some mistakes in my 8th labsheet, and I need to delete all the files in that directory except the PDF file. To do this, I’ll locally delete the files as I normally would. Once I’ve made these local deletions, I need to ensure that the changes are reflected in the remote repository by following the steps below.
+
+1. Locally delete the unwanted files in the directory while keeping the PDF file intact.
+2. Stage the changes to be committed using the following command: `git add -A` The `-A` flag stages all changes, including deletions.
+3. Commit the staged changes with a descriptive message: `git commit -m "Deleted unnecessary files in 8th labsheet"`
+4. Push the changes to the remote repository to update it: `git push origin main`
+
+<figure className="flex flex-col w-full items-center gap-0">
+<img src="/images/Git and GitHub/image-6.png" className="w-full" alt="Staging and pushing changes"/>
+  <i>Staging and pushing changes</i>
+</figure>
+
+Another useful feature in Git is cloning. You can clone an entire project, for example you can clone FRRouting using the command `git clone https://github.com/FRRouting/frr.git`. Cloning allows you to create a copy of an entire project, including all its files, history, and branches, from a remote repository onto your local machine. This makes it easy to work on and collaborate with the project without affecting the original source, and it’s a fundamental operation for contributing to open-source projects or collaborating with a team.
+
+<figure className="flex flex-col w-full items-center gap-0">
+<img src="/images/Git and GitHub/image-7.png" className="w-full" alt="Final Component"/>
+  <i>Cloning repository</i>
+</figure>
+
+Here is my GitHub account: [poshan-p (Poshan Peeroo) (github.com)](https://github.com/poshan-p), and the repository we created in the blog: [poshan-p/prog_labsheets (github.com)](https://github.com/poshan-p/prog_labsheets).
+
+That’s it for today! I’ll see you in the next one. Happy coding!

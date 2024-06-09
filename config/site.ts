@@ -18,6 +18,6 @@ export const siteConfig = {
     },
   ],
   links: {
-    resume: "./files/Poshan-Peeroo-Resume.pdf"
+    resume: "/files/Poshan-Peeroo-Resume.pdf"
   },
 };
