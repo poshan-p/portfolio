@@ -1,0 +1,46 @@
+---
+title: Deep Learning - Introduction - Part 1
+description: Learn along series about neural network
+date: "2024-07-04"
+category: "Learn-Along"
+---
+# Deep Learning - Introduction - Part 1
+
+*Note: This blog is part of a learn-along series, so there may be updates and changes as we progress.*
+
+**Artificial Intelligence (AI)** refers to the concept where computers and machines simulate human intelligence and problem-solving capabilities. AI can be seen in many applications, like self-driving cars and voice assistants.
+
+**Machine Learning (ML)** is a subset of AI. It refers to the concept where we give machines the ability to learn from data instead of writing specific instructions. We feed data into algorithms and let them learn patterns and make decisions. Examples include spam detection in emails, image recognition, and predicting stock prices.
+
+**Deep Learning (DL)** is a specialized subset of ML. It involves using algorithms called neural networks, which have many layers. These networks mimic the human brain and can learn complex patterns from vast amounts of data. 
+
+<figure className="flex flex-col w-full items-center gap-0">
+<img src="/images/Deep Learning - Introduction - Part 1/image-1.png" className="w-full" alt=""/>
+  <i>Deep Learning - [Wikipedia](https://en.wikipedia.org/wiki/Deep_learning#/media/File:AI-ML-DL.svg)</i>
+</figure>
+
+Neural networks consist of layers of nodes (neurons) and are divided into three categories:
+1. **Input Layer**: This is where data is input into the network.
+2. **Hidden Layers**: These layers process the inputs. Each neuron in a hidden layer takes inputs, processes them with weights and biases, and applies an activation function to produce an output.
+3. **Output Layer**: This produces the final prediction or output.
+
+<figure className="flex flex-col w-full items-center gap-0">
+<img src="/images/Deep Learning - Introduction - Part 1/image-2.png" className="w-full" alt=""/>
+  <i>Neural Network - [Wikipedia](https://en.wikipedia.org/wiki/Neural_network_(machine_learning)#/media/File:Colored_neural_network.svg)</i>
+</figure>
+
+To understand the intuition behind a neural network, we can start with a simple neural network as shown above. There are three layers: the red ones are the input layer, the blue ones are the hidden layer (note that there can be multiple hidden layers), and the green ones are the output layer. The lines connecting the nodes are called synapses, and the values are passed through them.
+
+The input value for each node is an independent variable, and all of them together represent a single observation (for example, the size of a property, its price, and age). To process them, we first need to standardize them (mean of zero and variance of one) or sometimes normalize them (subtract the minimum, then divide by the range to get values between 0 and 1).
+
+The output value can be binary, categorical, or a continuous variable. If it is categorical, it will have multiple output nodes, as shown in the picture above. The synapses have weights and biases assigned to them, and it is through these that our neural network learns. The network continuously adjusts these weights and biases during training to achieve the optimal output.
+
+Within the hidden layer, each node receives values through the synapses. It performs calculations on these values by computing the weighted sum and adding a bias. An [activation function](https://en.wikipedia.org/wiki/Activation_function) is then applied to this result to introduce non-linearity into the output of the neuron, determining whether the neuron should be activated. The activation function is essential for enabling the network to learn and model complex patterns.
+
+There are various types of activation functions used for different purposes in neural networks. Each type of activation function has unique characteristics and is suitable for specific tasks. You can explore more about these activation functions and their applications in detail on [this Wikipedia page](https://en.wikipedia.org/wiki/Activation_function).
+
+If the node is activated, it will pass on the weighted value to the next node, which in this case is the output node. The cost is then calculated by comparing the predicted output with the actual output, measuring the error. The cost function essentially tells us the error in our output. This information is fed back into the neural network, where the weights get adjusted, and the input value is fed back into it. This process continues until we are satisfied with the accuracy of the neural network (the cost function gets closer to 0, and the predicted output and actual output values are very close). The goal here is to minimize the cost function, and this process is called [backpropagation](https://en.wikipedia.org/wiki/Backpropagation).
+
+To minimize the cost function, we use the [gradient descent method](https://en.wikipedia.org/wiki/Gradient_descent), which works well for convex cost functions. If the cost function is not convex, we can use [stochastic gradient descent](https://en.wikipedia.org/wiki/Stochastic_gradient_descent), which does not require the cost function to be convex.
+
+This was a high-level overview of how a neural network works. In the next blog post, we will implement a simple neural network from scratch. Until then, happy coding!
