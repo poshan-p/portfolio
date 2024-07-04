@@ -15,8 +15,8 @@ category: "learn-along"
 **Deep Learning (DL)** is a specialized subset of ML. It involves using algorithms called neural networks, which have many layers. These networks mimic the human brain and can learn complex patterns from vast amounts of data. 
 
 <figure className="flex flex-col w-full items-center gap-0">
-<img src="/images/Deep Learning - Introduction - Part 1/image-1.png" className="w-full" alt=""/>
-  <i>Deep Learning - [Wikipedia](https://en.wikipedia.org/wiki/Deep_learning#/media/File:AI-ML-DL.svg)</i>
+<object type="image/svg+xml" data="/images/Deep Learning - Introduction - Part 1/image-1.svg" className="w-full" alt=""></object>
+  <i>Deep Learning</i>
 </figure>
 
 Neural networks consist of layers of nodes (neurons) and are divided into three categories:
@@ -25,8 +25,8 @@ Neural networks consist of layers of nodes (neurons) and are divided into three 
 3. **Output Layer**: This produces the final prediction or output.
 
 <figure className="flex flex-col w-full items-center gap-0">
-<img src="/images/Deep Learning - Introduction - Part 1/image-2.png" className="w-full" alt=""/>
-  <i>Neural Network - [Wikipedia](https://en.wikipedia.org/wiki/Neural_network_(machine_learning)#/media/File:Colored_neural_network.svg)</i>
+<object type="image/svg+xml" data="/images/Deep Learning - Introduction - Part 1/image-2.svg" className="w-full" alt=""></object>
+  <i>Neural Network</i>
 </figure>
 
 To understand the intuition behind a neural network, we can start with a simple neural network as shown above. There are three layers: the red ones are the input layer, the blue ones are the hidden layer (note that there can be multiple hidden layers), and the green ones are the output layer. The lines connecting the nodes are called synapses, and the values are passed through them.
@@ -39,8 +39,8 @@ Within the hidden layer, each node receives values through the synapses. It perf
 
 There are various types of activation functions used for different purposes in neural networks. Each type of activation function has unique characteristics and is suitable for specific tasks. You can explore more about these activation functions and their applications in detail on [this Wikipedia page](https://en.wikipedia.org/wiki/Activation_function).
 
-If the node is activated, it will pass on the weighted value to the next node, which in this case is the output node. The cost is then calculated by comparing the predicted output with the actual output, measuring the error. The cost function essentially tells us the error in our output. This information is fed back into the neural network, where the weights get adjusted, and the input value is fed back into it. This process continues until we are satisfied with the accuracy of the neural network (the cost function gets closer to 0, and the predicted output and actual output values are very close). The goal here is to minimize the cost function, and this process is called [backpropagation](https://en.wikipedia.org/wiki/Backpropagation).
+If the node is activated, it will pass on the weighted value to the next node, which in this case is the output node and this process is called [forward propagation](https://h2o.ai/wiki/forward-propagation/#:~:text=Forward%20propagation%20is%20where%20input,moves%20to%20the%20successive%20layer.) also known as the forward pass. The cost is then calculated by comparing the predicted output with the actual output, measuring the error. The cost function essentially tells us the error in our output. This information is fed back into the neural network, where the weights get adjusted, and the input value is fed back into it. This process continues until we are satisfied with the accuracy of the neural network (the cost function gets closer to 0, and the predicted output and actual output values are very close). The goal here is to minimize the cost function, and this process is called [backpropagation](https://en.wikipedia.org/wiki/Backpropagation) also known as the backward pass.
 
-To minimize the cost function, we use the [gradient descent method](https://en.wikipedia.org/wiki/Gradient_descent), which works well for convex cost functions. If the cost function is not convex, we can use [stochastic gradient descent](https://en.wikipedia.org/wiki/Stochastic_gradient_descent), which does not require the cost function to be convex.
+To minimize the cost function, we use the [gradient descent method](https://en.wikipedia.org/wiki/Gradient_descent), which works well for convex cost functions. If the cost function is not convex, we can use [stochastic gradient descent](https://en.wikipedia.org/wiki/Stochastic_gradient_descent), which does not require the cost function to be convex. There are some other optimizers which you can find [here](https://ml-cheatsheet.readthedocs.io/en/latest/optimizers.html).
 
 This was a high-level overview of how a neural network works. In the next blog post, we will implement a simple neural network from scratch. Until then, happy coding!
