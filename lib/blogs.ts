@@ -3,6 +3,8 @@ import { compileMDX } from 'next-mdx-remote/rsc';
 import path from 'path';
 import rehypeHighlight from "rehype-highlight";
 import rehypePrettyCode from "rehype-pretty-code";
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
 
 export function loadBlog(slug: any) {
     const filename = slug.endsWith('.mdx') ? slug : slug.concat('.mdx')
@@ -22,8 +24,8 @@ export async function getBlog(slug: any) {
             parseFrontmatter: true,
             mdxOptions: {
                 // @ts-ignore
-                rehypePlugins: [rehypePrettyCode, rehypeHighlight],
-                
+                rehypePlugins: [rehypeKatex, rehypePrettyCode, rehypeHighlight],
+                remarkPlugins: [remarkMath],
             },
         }
     });;
