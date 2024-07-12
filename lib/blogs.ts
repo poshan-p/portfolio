@@ -1,22 +1,20 @@
-import fs from 'fs';
-import { compileMDX } from 'next-mdx-remote/rsc';
+import fs from 'fs/promises';
 import path from 'path';
+import { compileMDX } from 'next-mdx-remote/rsc';
 import rehypeHighlight from "rehype-highlight";
 import rehypePrettyCode from "rehype-pretty-code";
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 
-export function loadBlog(slug: any) {
-    const filename = slug.endsWith('.mdx') ? slug : slug.concat('.mdx')
-
-    return fs.readFileSync(
-        path.join(process.cwd(), 'contents', decodeURI(filename))
-    )
+export async function loadBlog(slug: any) {
+    const filename = slug.endsWith('.mdx') ? slug : slug.concat('.mdx');
+    const filePath = path.join(process.cwd(), 'contents', decodeURI(filename));
+    
+    return await fs.readFile(filePath, 'utf-8');
 }
 
-
 export async function getBlog(slug: any) {
-    const source = loadBlog(slug)
+    const source = await loadBlog(slug);
 
     return await compileMDX({
         source,
@@ -28,21 +26,22 @@ export async function getBlog(slug: any) {
                 remarkPlugins: [remarkMath],
             },
         }
-    });;
+    });
 }
 
 export async function getBlogs() {
-    const files = fs.readdirSync(path.join(process.cwd(), 'contents'))
+    const files = await fs.readdir(path.join(process.cwd(), 'contents'));
 
-    return await Promise.all(
-        files.map(async filename => {
-            const { frontmatter } = await getBlog(filename)
-
+    const blogs = await Promise.all(
+        files.map(async (filename) => {
+            const { frontmatter } = await getBlog(filename);
             return {
                 frontmatter,
                 slug: filename.replace('.mdx', '')
-            }
+            };
         })
-    )
+    );
+
+    return blogs;
 }
 
