@@ -35,14 +35,18 @@ First, let's give the inputs, weights and biases an initial value to better visu
 Now, let's understand how the input values works through the neural network. Looking at the node $n_3$ which is in the hidden layer, we can see that it receives two inputs through the two synapses and as we discussed in the previous blog, the node usually does two things with the input. It finds its total net input and applies an activation function to the total net input to get the output of node $n_3$. Following some common practices we will use [ReLu](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)) which is an activation function for the node(s) of the hidden layers and [Sigmoid](https://en.wikipedia.org/wiki/Sigmoid_function) for the node(s) of the output layer.
 
 $net_{n_3} = w_1 \cdot x_1 + w_4 \cdot x_2 + b_1$
+
 $net_{n_3} = 0.1 \cdot 0.23 + 0.4 \cdot 0.55 + 0.1 = 0.343$
 
+
 $out_{n_3} = max(0, net_{n_3})$
+
 $out_{n_3} = max(0, 0.343) = 0.343$
 
 Here is the output for the rest of the nodes in the hidden layer 1:
 
 $out_{n_4} = max(0, -0.079) = 0$
+
 $out_{n_5} = max(0, 0.699) = 0.699$
 
 Now, the output of the nodes in the hidden layer 1 becomes the input of the nodes in the hidden layer 2 as shown in the diagram below.
@@ -58,15 +62,24 @@ And after repeating the same steps to find the output of the nodes we get the fo
 </figure>
 
 $out_{n_6} = max(0, 0.0197) = 0.0197$
+
 $out_{n_7} = max(0, 1.1239) = 1.1239$
+
 $out_{n_8} = max(0, 1.3281) = 1.3281$
+
 ## Computing Output Layer Activation
 As mentioned above, we will be using the Sigmoid function as the activation function for the nodes in the output layer, which in this case is only one node.
 
 $net_{n_9} = w_{16} \cdot out_{n_6} + w_{17} \cdot out_{n_7} + w_{18} \cdot out_{n_8} + b_7$
+
 $net_{n_9} = 1.4082$
+
+
 $$\sigma(x) = \frac{1}{1 + e^{-x}}$$
+
+
 $\hat{y} = out_{n_9} = \sigma(net_{n_9}) = \frac{1}{1 + e^{-net_{n_9}}}$
+
 $\hat{y} = \sigma(1.4082) = \frac{1}{1 + e^{-1.4082}} = 1.3238$
 
 <figure className="flex flex-col w-full items-center gap-0">
@@ -75,11 +88,16 @@ $\hat{y} = \sigma(1.4082) = \frac{1}{1 + e^{-1.4082}} = 1.3238$
 
 ## Calculating Total Error
 Our next step is to calculate the total error of the neural network. This can be done using a variety of methods but we will be making the use of the Squared Error with a multiplier of $\frac{1}{2}$ so that the derivative we will be doing later on will be much cleaner.
+
 $$ E(y, \hat{y}) = \frac{1}{2}\sum (y - \hat{y})^2 $$
+
 $\hat{y}$ represents the ideal output and $y$ represents the actual output. And let's assume that $y = 1.5$ to continue with our explanation.
 
+
 $E(y, \hat{y}) = \frac{1}{2} (y - \hat{y})^2$
+
 $E(1.5, 1.3238) = \frac{1}{2} (1.5 - 1.3238)^2 = 0.0310$
+
 
 If we had more than one output, we would have to calculate the error for each output and sum them to get the total error. But since we have only one output we can say that $E_{total} = 0.0310$
 ## Backpropagation and Weight Updates
@@ -91,6 +109,7 @@ If we apply the chain rule to $\frac{\partial E_{\text{total}}}{\partial w_{16}}
 
 $$\frac{\partial E_{total}}{\partial w_{16}} = \frac{\partial E_{\text{total}}}{\partial out_{n_9}}  \cdot  \frac{\partial out_{n_9}}{\partial net_{n_9}}  \cdot  \frac{\partial net_{n_9}}{\partial w_{16}}$$
 
+
 $E_{total} = \frac{1}{2}\sum (y - \hat{y})^2 = \frac{1}{2} (y - out_{n_9})^2$
 
 $\frac{\partial E_{\text{total}}}{\partial out_{n_9}} = out_{n_9} - y = 1.3238 - 1.5 = -0.1762$
@@ -98,10 +117,12 @@ $\frac{\partial E_{\text{total}}}{\partial out_{n_9}} = out_{n_9} - y = 1.3238 -
   
 $out_{n_9} = \frac{1}{1 + e^{-net_{n_9}}}$
 
+
 $\frac{\partial out_{n_9}}{\partial net_{n_9}} = out_{n_9}(1 - out_{n_9}) = 1.3238  \cdot  (1 - 1.3238) = -0.4286$
 
 
 $net_{n_9} = w_{16}  \cdot  out_{n_6} + w_{17}  \cdot  out_{n_7} + w_{18}  \cdot  out_{n_8} + b_7$
+
 
 $\frac{\partial net_{n_9}}{\partial w_{16}} = out_{n_6} = 0.0197$
 
@@ -109,6 +130,7 @@ $\frac{\partial net_{n_9}}{\partial w_{16}} = out_{n_6} = 0.0197$
 Combining these we get:
 
 $\frac{\partial E_{\text{total}}}{\partial w_{16}} = (out_{n_9} - y)  \cdot  out_{n_9}  \cdot  (1 - out_{n_9})  \cdot  out_{n_6}$
+
 
 $\frac{\partial E_{\text{total}}}{\partial w_{16}} = (-0.1762)  \cdot  (-0.4286)  \cdot  0.0197 = 0.0015$
 
@@ -122,8 +144,11 @@ $w_{16}^{\text{new}} = 0.7 - 0.01  \cdot  0.0015 = 0.699985$
 
 We can repeat this process for $w_{17}$ and $w_{18}$:
 
+
 $w_{17}^{\text{new}} = 0.8 - 0.01 \cdot 0.0850 = 0.79915$
+
 $w_{18}^{\text{new}} = 0.9 - 0.01 \cdot 0.1003 = 0.899003$
+
 
 <figure className="flex flex-col w-full items-center gap-0">
 <object type="image/svg+xml" data="/images/Deep Learning - The Mathematics Behind Neural Network - Part 2/image-6.svg" className="w-full" alt=""></object>
@@ -132,13 +157,19 @@ $w_{18}^{\text{new}} = 0.9 - 0.01 \cdot 0.1003 = 0.899003$
 Similarly, we update the biases. Let's start with $b_7$:
 
 $$\frac{\partial E_{total}}{\partial b_{7}} = \frac{\partial E_{\text{total}}}{\partial out_{n_9}}  \cdot  \frac{\partial out_{n_9}}{\partial net_{n_9}}  \cdot  \frac{\partial net_{n_9}}{\partial b_{7}}$$
+
 $net_{n_9} = w_{16}  \cdot  out_{n_6} + w_{17}  \cdot  out_{n_7} + w_{18}  \cdot  out_{n_8} + b_7$  
+
 
 $\frac{\partial net_{n_9}}{\partial b_7} = 1$
 
+
 $\frac{\partial E_{\text{total}}}{\partial b_7} = (-0.1762) \cdot (-0.4285) \cdot 1 = 0.0755$
+
 $$b_7^{\text{new}} = b_7^{\text{old}} - \eta \cdot \frac{\partial E_{\text{total}}}{\partial b_7}$$
+
 $b_7^{\text{new}} = -0.7 - 0.01 \cdot 0.0755 = -0.700755$
+
 ## Iterative Training and Error Reduction
 To update the weights and biases in the hidden layers, we need to propagate the error backward from the output layer to the hidden layers. We'll start by calculating the partial derivatives for the weights of the synapses going in the second hidden layer, and then move to the weights of the synapses going in the first hidden layer.
 
@@ -166,6 +197,7 @@ $\frac{\partial E_{total}}{\partial w_{7}} = (-0.1762)  \cdot  (-0.4286)  \cd
 Now, update the weight $w_{10}$ using the learning rate $\eta = 0.01$:
 
 $$w_{7}^{\text{new}} = w_{7}^{\text{old}} - \eta \cdot \frac{\partial E_{\text{total}}}{\partial w_{7}}$$
+
 $w_{7}^{\text{new}} = 0.7 - 0.01  \cdot  0.0181 = 0.6998$
 
 Similarly, for $w_1$ we apply the chain rule:
