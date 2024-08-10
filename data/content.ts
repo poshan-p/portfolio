@@ -35,9 +35,16 @@ export const contentData = [
         title: "Projects",
         items: [
             {
+                title: "DermAI - Skin Condition Detection and Telemedicine",
+                subTitle: "Dart, Flutter, Supabase, TensorFlow",
+                date: "2024 - 2024",
+                description: "Developed \"DermAI,\" a mobile application that leverages AI for skin condition detection and telemedicine, available for Android and iOS.",
+                href: "https://github.com/poshan-p/dermai_flutter"
+            },
+            {
                 title: "TLDR Fail Testing for IP Addresses in Mauritius",
                 subTitle: "Python, Security",
-                date: "2024 - Present",
+                date: "2023 - 2024",
                 description: "Collaborated with colleagues on a project analyzing Mauritius' readiness against Quantum Computing, checking websites' TLS implementations.",
                 href: "https://github.com/poshan-p/tldr-fail-testing"
             },
