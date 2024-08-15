@@ -1,0 +1,139 @@
+---
+title: Setting Up Dynamic DNS (DDNS) with No-IP
+description: Guide for setting up Dynamic DNS (DDNS) with No-IP
+date: "2024-08-15"
+category: "How-To Hub"
+---
+# Setting Up Dynamic DNS (DDNS) with No-IP
+
+Dynamic DNS (DDNS) is an essential tool for those who want remote access to devices at home or elsewhere, even if their public IP frequently changes. In this guide, we’ll be setting up DDNS using [No-IP](https://www.noip.com/), a popular free service. While the free tier is quite useful, there’s one catch: you’ll need to reactivate your DNS every 30 days unless you upgrade to a premium plan. We’ll also be using the free domains provided by No-IP.
+
+---
+
+### Step 1: Create a Free Account on No-IP
+
+Start by heading over to [No-IP](https://www.noip.com/) and creating a free account. 
+<figure className="flex flex-col w-full items-center gap-0">
+<img src="/images/Setting Up Dynamic DNS (DDNS) with No-IP/image-1.png" className="w-full" alt="Final Component"/>
+  <i>Create No-IP account</i>
+</figure>
+Keep in mind that for the free tier, you’ll need to reactivate your domain every month. The premium plan removes this requirement.
+
+---
+
+### Step 2: Access the No-IP Dashboard
+
+Once you’ve signed up and logged in, you’ll see the No-IP dashboard. This is where we’ll be setting up your hostname.
+<figure className="flex flex-col w-full items-center gap-0">
+<img src="/images/Setting Up Dynamic DNS (DDNS) with No-IP/image-2.png" className="w-full" alt="Final Component"/>
+  <i>No-IP dashboard</i>
+</figure>
+
+---
+
+### Step 3: Navigate to Dynamic DNS > No-IP Hostnames
+
+On the left menu, navigate to **Dynamic DNS > No-IP Hostnames**. Here, you can create your custom hostname.
+<figure className="flex flex-col w-full items-center gap-0">
+<img src="/images/Setting Up Dynamic DNS (DDNS) with No-IP/image-3.png" className="w-full" alt="Final Component"/>
+  <i>Dynamic DNS > No-IP Hostnames</i>
+</figure>
+
+---
+
+### Step 4: Create Your Hostname
+
+A pop-up window will appear (Screenshot 4). Enter your desired hostname, and select one of the free domain options available (I chose `ddns.net` and used `cyberstorm-example` as the hostname). Leave the IPv4 address field empty if it automatically detects your current IP; otherwise, input it manually.
+
+<figure className="flex flex-col w-full items-center gap-0">
+<img src="/images/Setting Up Dynamic DNS (DDNS) with No-IP/image-4.png" className="w-full" alt="Final Component"/>
+  <i>Create hostname</i>
+</figure>
+
+**Important Note:** Depending on your router, you might not be able to log in using just your email and password. Some routers, like TP-Link models, support direct login with these details, but others (like mine) require a DDNS key instead. If your router supports direct login, simply click on **Create Hostname**. If not, select **Create Hostname with DDNS Key**.
+
+---
+
+### Step 5: Generate Your DDNS Key
+
+Once you’ve selected **Create Hostname with DDNS Key**, you’ll be taken to a screen where you can generate the key.
+
+<figure className="flex flex-col w-full items-center gap-0">
+<img src="/images/Setting Up Dynamic DNS (DDNS) with No-IP/image-5.png" className="w-full" alt="Final Component"/>
+  <i>Generate DDNS Key</i>
+</figure>
+
+---
+
+### Step 6: Obtain the Credentials
+
+After generating the key, you’ll be provided with a username, password, and a domain that the router will use to connect to your DDNS (in this case, it’s `all.ddnskey.com`). Make a note of these details as you’ll need them later.
+
+<figure className="flex flex-col w-full items-center gap-0">
+<img src="/images/Setting Up Dynamic DNS (DDNS) with No-IP/image-6.png" className="w-full" alt="Final Component"/>
+  <i>Credentials</i>
+</figure>
+
+---
+
+### Step 7: Log into Your Router Configuration Page
+
+Next, log into your router’s configuration page. You can typically find the login address on the back of your router. Common addresses include:
+
+- `192.168.1.1`
+- `192.168.0.1`
+- `192.168.100.1`
+
+For my setup, it was `192.168.100.1`. 
+<figure className="flex flex-col w-full items-center gap-0">
+<img src="/images/Setting Up Dynamic DNS (DDNS) with No-IP/image-7.png" className="w-full" alt="Final Component"/>
+  <i>Router's configuration page</i>
+</figure>
+If you haven’t changed the default credentials, they are usually one of the following combinations:
+
+- Username: `admin`, Password: `admin`
+- Username: `root`, Password: `admin`
+<figure className="flex flex-col w-full items-center gap-0">
+<img src="/images/Setting Up Dynamic DNS (DDNS) with No-IP/image-8.png" className="w-full" alt="Final Component"/>
+  <i>Router's configuration dashboard</i>
+</figure>
+You can also find the default login information on the back of your router.
+
+---
+
+### Step 8: Access the DDNS Settings
+
+Once logged in, navigate to **Advanced > DDNS**. Here, you’ll be able to create a new DDNS entry.
+<figure className="flex flex-col w-full items-center gap-0">
+<img src="/images/Setting Up Dynamic DNS (DDNS) with No-IP/image-9.png" className="w-full" alt="Final Component"/>
+  <i>Advanced > DDNS</i>
+</figure>
+---
+
+### Step 9: Configure the DDNS Entry
+
+Click on **New** and fill in the details from the No-IP page:
+
+- Domain: `all.ddnskey.com`
+- Service Provider: No-IP
+- Username and Password: As provided in Step 6
+
+Once you’ve filled in the form, press **Continue** and then click **Apply/Save**.
+<figure className="flex flex-col w-full items-center gap-0">
+<img src="/images/Setting Up Dynamic DNS (DDNS) with No-IP/image-10.png" className="w-full" alt="Final Component"/>
+  <i>DDNS entry</i>
+</figure>
+
+---
+
+### Step 10: Wait for the Connection to Update
+
+After applying the settings, wait a minute and then refresh the page. You should see a status message like “None (Update successful)” indicating that your router has successfully connected to the DDNS.
+<figure className="flex flex-col w-full items-center gap-0">
+<img src="/images/Setting Up Dynamic DNS (DDNS) with No-IP/image-11.png" className="w-full" alt="Final Component"/>
+  <i>Connection status</i>
+</figure>
+
+---
+
+That’s it! Your DDNS setup is now complete, allowing you to access your devices remotely without worrying about changing IP addresses. I hope this guide was helpful. I’ll see you in the next one. Happy coding!
