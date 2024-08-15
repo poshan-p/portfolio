@@ -5,6 +5,7 @@ import rehypeHighlight from "rehype-highlight";
 import rehypePrettyCode from "rehype-pretty-code";
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import { blogData, type Blog } from "@/data/content";
 
 export async function loadBlog(slug: any) {
     const filename = slug.endsWith('.mdx') ? slug : slug.concat('.mdx');
@@ -43,5 +44,9 @@ export async function getBlogs() {
     );
 
     return blogs;
+}
+
+export function getBlogsDetail() {
+    return blogData;
 }
 

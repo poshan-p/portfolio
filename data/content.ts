@@ -86,9 +86,48 @@ export type Content = {
 
 export type ContentData = Content[];
 
+export type Blog = {
+    title: string;
+    date: string;
+    description: string;
+    category: string;
+};
 
+export type BlogData = Blog[];
 
+export const blogData = [
+    {
+        title: "Creating a Horizontal Scrollable Calendar in Jetpack Compose",
+        date: "2023-08-26",
+        description: "Tutorial for creating a horizontal scrollable calendar in jetpack compose",
+        category: "How-To Hub",
+    },
+    {
+        title: "Deep Learning - Introduction - Part 1",
+        date: "2024-07-04",
+        description: "A learn-along series exploring the basics and implementation of neural networks.",
+        category: "learn-along",
+    },
+    {
+        title: "Deep Learning - The Mathematics Behind Neural Network - Part 2",
+        date: "2024-07-11",
+        description: "A learn-along series exploring the basics and implementation of neural networks.",
+        category: "learn-along",
+    },
+    {
+        title: "Git and GitHub",
+        date: "2023-10-26",
+        description: "Guide for Git and GitHub",
+        category: "How-To Hub",
+    },
+    {
+        title: "Setting Up Dynamic DNS (DDNS) with No-IP",
+        date: "2024-08-15",
+        description: "Guide for setting up Dynamic DNS (DDNS) with No-IP",
+        category: "How-To Hub",
+    },
 
+];
 export const generalData = {
     name: "Poshan Peeroo",
     avatar: "https://avatars.githubusercontent.com/u/75898715?v=4",
