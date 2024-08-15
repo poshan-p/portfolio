@@ -1,12 +1,11 @@
 // pages/blogs.tsx
 import dynamic from 'next/dynamic';
-import { getBlogsDetail, getBlogs } from '@/lib/blogs';
+import { getBlogs } from '@/lib/blogs';
 
 const BlogGrid = dynamic(() => import('@/components/blogitem').then(mod => mod.BlogGrid));
 
 export default async function BlogsPage({ searchParams }: { searchParams: any }) {
-  const unfilteredBlogs = getBlogsDetail();
-  getBlogs();
+  const unfilteredBlogs = getBlogs();
 
   let blogs = unfilteredBlogs
     .sort((a, b) => {

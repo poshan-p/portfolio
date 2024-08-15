@@ -5,7 +5,7 @@ import rehypeHighlight from "rehype-highlight";
 import rehypePrettyCode from "rehype-pretty-code";
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
-import { blogData, type Blog } from "@/data/content";
+import { blogData } from "@/data/content";
 
 export async function loadBlog(slug: any) {
     const filename = slug.endsWith('.mdx') ? slug : slug.concat('.mdx');
@@ -30,23 +30,7 @@ export async function getBlog(slug: any) {
     });
 }
 
-export async function getBlogs() {
-    const files = await fs.readdir(path.join(process.cwd(), 'contents'));
-
-    const blogs = await Promise.all(
-        files.map(async (filename) => {
-            const { frontmatter } = await getBlog(filename);
-            return {
-                frontmatter,
-                slug: filename.replace('.mdx', '')
-            };
-        })
-    );
-
-    return blogs;
-}
-
-export function getBlogsDetail() {
+export function getBlogs() {
     return blogData;
 }
 
