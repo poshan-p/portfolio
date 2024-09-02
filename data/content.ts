@@ -1,3 +1,5 @@
+import { title } from "process";
+
 export const contentData = [
     {
         title: "Work Experience",
@@ -126,6 +128,12 @@ export const blogData = [
         description: "Guide for setting up Dynamic DNS (DDNS) with No-IP",
         category: "How-To Hub",
     },
+    {
+        title: "How to Send Emails Using Gmail SMTP with Cloudflare Email Routing",
+        date: "2024-09-02",
+        description: "Learn how to set up Gmail SMTP with Cloudflare Email Routing to send emails from your custom domain easily and securely.",
+        category: "How-To Hub",
+    }
 
 ];
 export const generalData = {

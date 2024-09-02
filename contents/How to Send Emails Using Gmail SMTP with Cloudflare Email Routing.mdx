@@ -1,0 +1,108 @@
+---
+title: How to Send Emails Using Gmail SMTP with Cloudflare Email Routing
+description: Learn how to set up Gmail SMTP with Cloudflare Email Routing to send emails from your custom domain easily and securely.
+date: "2024-09-02"
+category: "How-To Hub"
+---
+# How to Send Emails Using Gmail SMTP with Cloudflare Email Routing
+
+If you're using Cloudflare Email Routing and need a way to send emails, you'll need to set up an SMTP server since Cloudflare doesn't provide one. In this guide, I'll walk you through how to use Gmail as your SMTP server.
+
+Cloudflare Email Routing allows you to receive emails but doesn’t include an SMTP server for sending them. By using Gmail’s SMTP server, you can send emails from your custom domain, keeping your communications professional. While this guide focuses on Gmail, you can also use other SMTP servers like Outlook or Yahoo.
+
+#### Step 1: Enable Two-Factor Authentication (2FA)
+
+Before you can use Gmail's SMTP server, you need to enable Two-Factor Authentication (2FA) on your Google account. This extra layer of security ensures that only you can access your account.
+
+1. **Go to** [Google Account Security Settings](https://myaccount.google.com/security).
+2. **Enable 2FA** by clicking on "2-Step Verification" and following the prompts.
+
+<figure className="flex flex-col w-full items-center gap-0">
+<img src="/images/How to Send Emails Using Gmail SMTP with Cloudflare Email Routing/image-1.png" className="w-full" alt="Setup 2FA"/>
+    <figcaption>Setting up 2FA</figcaption>
+</figure>
+
+#### Step 2: Create an App Password
+
+Next, you’ll need to create an App Password specifically for this setup. This is a special password that allows Gmail to connect to your Cloudflare-routed email.
+
+1. **Visit** [Google App Passwords](https://myaccount.google.com/apppasswords).
+2. **Set up your App Password** For this example, I named it "Cyberstorm" for my group's domain, but you can choose any name.
+
+<figure className="flex flex-col w-full items-center gap-0">
+    <img src="/images/How to Send Emails Using Gmail SMTP with Cloudflare Email Routing/image-2.png" className="w-full" alt="Create App Password"/>
+    <figcaption>Create App Password</figcaption>
+</figure>
+
+3. **Copy the generated password**—you’ll need this later.
+
+<figure className="flex flex-col w-full items-center gap-0">
+    <img src="/images/How to Send Emails Using Gmail SMTP with Cloudflare Email Routing/image-3.png" className="w-full" alt="Copy App Password"/>
+    <figcaption>Copy App Password</figcaption>
+</figure>
+
+#### Step 3: Add Your Cloudflare Email to Gmail
+
+Now, you’ll add your Cloudflare-routed email address to Gmail so you can send emails from it.
+
+1. **Open Gmail** and click on the settings icon, then select "See all settings."
+2. **Navigate to** the "Accounts and Import" tab.
+3. **Scroll down to** the "Send mail as" section and click on "Add another email address."
+
+<figure className="flex flex-col w-full items-center gap-0">
+    <img src="/images/How to Send Emails Using Gmail SMTP with Cloudflare Email Routing/image-4.png" className="w-full" alt="Add Email Address"/>
+    <figcaption>Add Email Address</figcaption>
+</figure>
+
+#### Step 4: Enter Your Name and Email Address
+
+A pop-up window will appear where you can enter your name and custom domain email address.
+
+1. **Enter your name** and your Cloudflare-routed email address.
+2. **Uncheck** the "Treat as an alias" box.
+3. **Click** "Next Step."
+
+<figure className="flex flex-col w-full items-center gap-0">
+    <img src="/images/How to Send Emails Using Gmail SMTP with Cloudflare Email Routing/image-5.png" className="w-full" alt="Enter Name and Email Address"/>
+    <figcaption>Enter Name and Email Address</figcaption>
+</figure>
+
+#### Step 5: Configure the SMTP Server Settings
+
+Now you’ll enter the SMTP server details to allow Gmail to send emails on behalf of your custom domain.
+
+1. **SMTP Server:** smtp.gmail.com
+2. **Port:** 587
+3. **Username:** Your Gmail address (e.g., yourname@gmail.com)
+4. **Password:** The App Password you generated earlier
+5. **TLS:** Make sure it’s selected
+
+<figure className="flex flex-col w-full items-center gap-0">
+    <img src="/images/How to Send Emails Using Gmail SMTP with Cloudflare Email Routing/image-6.png" className="w-full" alt="SMTP Server Settings"/>
+    <figcaption>SMTP Server Settings</figcaption>
+</figure>
+
+#### Step 6: Verify Your Email Address
+
+After entering the SMTP settings, Gmail will send a confirmation email to your Cloudflare-routed email address to verify that you own it.
+
+1. **Check your email** for a confirmation message from Gmail.
+2. **Click the verification link** in the email.
+
+<figure className="flex flex-col w-full items-center gap-0">
+    <img src="/images/How to Send Emails Using Gmail SMTP with Cloudflare Email Routing/image-7.png" className="w-full" alt="Verify Email Address"/>
+    <figcaption>Verify Email Address</figcaption>
+</figure>
+
+#### Step 7: Send Emails from Your Custom Domain
+
+Once the verification is complete, you can start sending emails from your Cloudflare-routed email address directly from Gmail.
+
+<figure className="flex flex-col w-full items-center gap-0">
+    <img src="/images/How to Send Emails Using Gmail SMTP with Cloudflare Email Routing/image-8.png" className="w-full" alt="Send Emails"/>
+</figure>
+
+---
+
+By following these steps, you’ve successfully set up Gmail’s SMTP server with Cloudflare Email Routing. This setup allows you to send emails using your custom domain. While Gmail is a reliable choice, remember that you can use other SMTP servers like Outlook if you prefer.
+Happy emailing!
